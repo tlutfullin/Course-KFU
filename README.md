@@ -5,3 +5,4 @@ Final project on the course of Digital Departments
 - `python3 -n venv venv` - создание виртуального окружения
 - `source venv/bin/activate` - войти в вирутальное окружение 
 - `pip install -r requirements.txt` - установка зависимостей
+- `python manage.py runserver` - запустить сервер
