@@ -15,7 +15,7 @@ class FeatureText(models.Model):
 
 class TextClass(models.Model):
     id_text = models.AutoField(primary_key = True)
-    id_feature = models.ForeignKey(FeatureText, on_delete=models.CASCADE)
+    id_feature = models.ManyToManyField(FeatureText)
     text = models.TextField()
 
 class Action(models.Model):
