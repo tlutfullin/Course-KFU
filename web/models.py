@@ -1,8 +1,10 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 
+User = get_user_model()
 # Create your models here.
 
-class User(models.Model):
+class UserWeb(models.Model):
     id_user = models.AutoField(primary_key = True)
     login = models.CharField(max_length=15, null=False)
     password = models.CharField(max_length=16, null=False)
@@ -20,7 +22,7 @@ class TextClass(models.Model):
 
 class Action(models.Model):
     id_actions = models.AutoField(primary_key=True)
-    id_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    id_user = models.ForeignKey(UserWeb, on_delete=models.CASCADE)
     id_text = models.ForeignKey(TextClass, on_delete=models.CASCADE)
     time_session = models.TimeField(auto_now=True)
 

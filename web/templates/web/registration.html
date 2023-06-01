@@ -1,0 +1,53 @@
+{% extends 'web/base.html' %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 40px;
+        }
+        .registration-form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #f7f7f7;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .registration-form h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .registration-form button {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="registration-form">
+        <h1>Регистрация пользователя</h1>
+        {% if is_success %}
+            <p><b>Спасибо за регистрацию</b></p>
+        {% else %}
+            <form action="" method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group">
+                        {{ field.label_tag }}
+
+                        {{ field     }}
+                        {% if field.errors %}
+                            <small class="form-text text-danger">{{ field.errors.as_text }}</small>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <button class="btn btn-primary">Зарегистрироваться</button>
+            </form>
+        {% endif %}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+{%  endblock %}

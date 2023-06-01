@@ -1,0 +1,93 @@
+{% extends 'web/base.html' %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>Мой Одностраничный Сайт</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .hero {
+            //background-image: url('background.jpg');
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 24px;
+            margin-bottom: 40px;
+        }
+
+        .features {
+            background-color: #f1f1f1;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .feature-item {
+            display: inline-block;
+            width: 30%;
+            padding: 20px;
+            margin: 10px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .footer-text {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <h1>Добро пожаловать на мой сайт!</h1>
+        <p>Здесь вы найдете всю необходимую информацию о моих услугах.</p>
+        <a href="#features">Узнать больше</a>
+    </section>
+
+    <section id="features" class="features">
+        <h2>Особенности</h2>
+        <div class="feature-item">
+            <h3>Простота использования</h3>
+            <p>Мой сайт разработан с учетом простоты использования, чтобы вы могли быстро найти нужную информацию.</p>
+        </div>
+        <div class="feature-item">
+            <h3>Отзывчивый дизайн</h3>
+            <p>Веб-сайт адаптивен и будет выглядеть прекрасно на любых устройствах, будь то компьютеры, планшеты или смартфоны.</p>
+        </div>
+        <div class="feature-item">
+            <h3>Качественный контент</h3>
+            <p>Мы предлагаем только актуальную и полезную информацию, которая поможет вам решить ваши задачи.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p class="footer-text">Сopyright &copy; 2023 Мой Одностраничный Сайт. Все права защищены.</p>
+    </footer>
+{% endblock %}
