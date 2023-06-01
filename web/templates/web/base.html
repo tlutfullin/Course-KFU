@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Fake news</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 </head>
 <body>
     <h1><a href="{% url 'main' %}">Fake news</a></h1>
@@ -10,14 +11,21 @@
 
     <a href="{% url 'main' %}">Главная страница</a>
     {% if  user.is_anonymous %}
+
         <a href="{% url 'registration' %}">Регистрация</a>
         <a href="{% url 'auth' %}">Авторизация</a>
+
+    {% else %}
+        <a href="{% url 'logout' %}">Выход</a>
 
     {% endif  %}
 </nav>
 
     <hr>
     {% block content  %}{% endblock %}
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
 </body>
 </html>
