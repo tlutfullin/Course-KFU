@@ -1,0 +1,147 @@
+{#{% extends 'web/base.html' %}#}
+{#{% block content %}#}
+{#<h1>Hello world</h1>#}
+{##}
+{#{% if not user.is_anonymous %}#}
+{#<p>Вы авторизованы как <b>{{ user.name }}</b></p>#}
+{##}
+{#{% endif %}#}
+{#<a href="ll">Ссылка</a>#}
+{#{{ year }}#}
+{##}
+{#{%  endblock %}#}
+{##}
+
+
+
+
+{#{% extends 'web/base.html' %}#}
+{##}
+{#{% block content %}#}
+{#    <style>#}
+{#        body {#}
+{#            font-family: Arial, sans-serif;#}
+{#            margin: 0;#}
+{#            padding: 20px;#}
+{#        }#}
+{##}
+{#        h1 {#}
+{#            color: #333;#}
+{#            font-size: 24px;#}
+{#            margin-bottom: 20px;#}
+{#        }#}
+{##}
+{#        p {#}
+{#            color: #666;#}
+{#        }#}
+{##}
+{#        b {#}
+{#            font-weight: bold;#}
+{#        }#}
+{##}
+{#        a {#}
+{#            color: #3366cc;#}
+{#            text-decoration: none;#}
+{#            margin-right: 10px;#}
+{#        }#}
+{##}
+{#        a:hover {#}
+{#            text-decoration: underline;#}
+{#        }#}
+{#    </style>#}
+{##}
+{#    <h1>Hello world</h1>#}
+{##}
+{#    {% if not user.is_anonymous %}#}
+{#        <p>Вы авторизованы как <b>{{ user.name }}</b></p>#}
+{#    {% endif %}#}
+{##}
+{#    <a href="ll">Ссылка</a>#}
+{#    {{ year }}#}
+{#{% endblock %}#}
+
+
+{% extends 'web/base.html' %}
+
+{% block content %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f7f7f7;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        p {
+            color: #666;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        form {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button[type="submit"] {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f1f1f1;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            text-align: center;
+        }
+    </style>
+
+    <h1>Выявление фейковых новостей</h1>
+
+    <p>Введите заголовок и текст новости для проверки:</p>
+
+    <form id="news-form">
+        <div class="form-group">
+            <label for="news-title">Заголовок новости:</label>
+            <input type="text" id="news-title" name="news-title" required>
+        </div>
+        <div class="form-group">
+            <label for="news-content">Текст новости:</label>
+            <textarea id="news-content" name="news-content" required></textarea>
+        </div>
+        <button type="submit">Проверить</button>
+    </form>
+
+    <div id="result"></div>
+{% endblock %}
