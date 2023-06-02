@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model, authenticate, login, logout
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
-from web.forms import RegistrationForm, AuthForm
+from web.forms import RegistrationForm, AuthForm, ClassText
 
 # Create your views here.
 
@@ -47,3 +47,16 @@ def auth_view(request):
 def logout_view(request):
     logout(request)
     return redirect('main')
+
+def class_text(request):
+    form = ClassText()
+    if request.method=='POST':
+        form = ClassText(data = request.POST, initial={'user': request.user})
+
+
+        if form.is_valid():
+            form.save()
+            return redirect('main')
+
+
+    return render(request, 'web/class_text.html', {'form': form})

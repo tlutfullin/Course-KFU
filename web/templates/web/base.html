@@ -16,6 +16,8 @@
         <a href="{% url 'auth' %}">Авторизация</a>
 
     {% else %}
+
+        <a href="{% url 'class_text_add' %}">Разметить данные</a>
         <a href="{% url 'logout' %}">Выход</a>
 
     {% endif  %}
