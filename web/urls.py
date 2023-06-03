@@ -17,13 +17,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from web.views import main_view, registration_view, auth_view, logout_view, class_text
+from web.views import main_view, registration_view, auth_view, logout_view, class_text_edit_view, history_view
 
 urlpatterns = [
 
     path('', main_view, name='main'),
+    #path('', text_prediction_view, name='main'),
     path('registration/', registration_view, name='registration' ),
     path('auth/', auth_view, name='auth'),
     path('logout/', logout_view, name='logout'),
-    path('text_class/add/', class_text, name='class_text_add')
+    path('text_class/add/', class_text_edit_view, name='class_text_add'),
+    path('text_class/<int:id>/', class_text_edit_view, name='class_text_edit'),
+    path('history/', history_view, name='history'),
 ]

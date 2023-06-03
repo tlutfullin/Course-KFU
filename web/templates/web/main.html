@@ -1,20 +1,32 @@
 {#{% extends 'web/base.html' %}#}
 {#{% block content %}#}
-{#<h1>Hello world</h1>#}
+{##}
 {##}
 {#{% if not user.is_anonymous %}#}
 {#<p>Вы авторизованы как <b>{{ user.username }}</b></p>#}
 {##}
 {#{% endif %}#}
+{##}
+{##}
 {#<a href="{%  url 'class_text_add' %}">Разметить данные</a>#}
-{#{{ year }}#}
+{#    <ul>#}
+{#    {% for classtext in classtexts %}#}
+{#        <li>#}
+{#            <b>{{ classtext.id_text }}</b>#}
+{#            {{ classtext.line_text }},#}
+{#            {{ classtext.language_text }}#}
+{#        <a href="{% url 'class_text_edit' classtext.id_text %}">Редактировать</a>#}
+{#        </li>#}
 {##}
+{#    {% endfor %}#}
+{#    </ul>#}
+{#{% endif %}#}
 {#{%  endblock %}#}
+
+
+
+
 {##}
-{##}
-
-
-
 {#{% extends 'web/base.html' %}#}
 {##}
 {#{% block content %}#}
@@ -59,89 +71,296 @@
 {#    <a href="ll">Ссылка</a>#}
 {#    {{ year }}#}
 {#{% endblock %}#}
+{##}
+
+{#{% extends 'web/base.html' %}#}
+{##}
+{#{% block content %}#}
+{#    <style>#}
+{#        body {#}
+{#            font-family: Arial, sans-serif;#}
+{#            margin: 0;#}
+{#            padding: 20px;#}
+{#            background-color: #f7f7f7;#}
+{#        }#}
+{##}
+{#        h1 {#}
+{#            color: #333;#}
+{#            font-size: 28px;#}
+{#            margin-bottom: 20px;#}
+{#            text-align: center;#}
+{#        }#}
+{##}
+{#        p {#}
+{#            color: #666;#}
+{#            font-size: 16px;#}
+{#            text-align: center;#}
+{#        }#}
+{##}
+{#        form {#}
+{#            margin-top: 20px;#}
+{#            text-align: center;#}
+{#        }#}
+{##}
+{#        .form-group {#}
+{#            margin-bottom: 10px;#}
+{#        }#}
+{##}
+{#        label {#}
+{#            display: block;#}
+{#            font-weight: bold;#}
+{#            margin-bottom: 5px;#}
+{#        }#}
+{##}
+{#        input[type="text"],#}
+{#        textarea {#}
+{#            width: 100%;#}
+{#            padding: 10px;#}
+{#            border: 1px solid #ccc;#}
+{#            border-radius: 4px;#}
+{#        }#}
+{##}
+{#        button[type="submit"] {#}
+{#            background-color: #333;#}
+{#            color: #fff;#}
+{#            padding: 10px 20px;#}
+{#            border: none;#}
+{#            border-radius: 4px;#}
+{#            cursor: pointer;#}
+{#        }#}
+{##}
+{#        #result {#}
+{#            margin-top: 20px;#}
+{#            padding: 10px;#}
+{#            background-color: #f1f1f1;#}
+{#            border: 1px solid #ccc;#}
+{#            border-radius: 4px;#}
+{#            text-align: center;#}
+{#        }#}
+{#    </style>#}
+{##}
+{#    <h1>Выявление фейковых новостей</h1>#}
+{##}
+{#    <p>Введите заголовок и текст новости для проверки:</p>#}
+{##}
+{#    <form id="news-form">#}
+{#        <div class="form-group">#}
+{#            <label for="news-title">Заголовок новости:</label>#}
+{#            <input type="text" id="news-title" name="news-title" required>#}
+{#        </div>#}
+{#        <div class="form-group">#}
+{#            <label for="news-content">Текст новости:</label>#}
+{#            <textarea id="news-content" name="news-content" required></textarea>#}
+{#        </div>#}
+{#        <button type="submit">Проверить</button>#}
+{#    </form>#}
+{##}
+{#    <div id="result"></div>#}
+{#{% endblock %}#}
+
+
+{#{% extends 'web/base.html' %}#}
+{#{% block content %}#}
+{##}
+{#<form method="post">#}
+{#  {% csrf_token %}#}
+{#  {{ form.as_p }}#}
+{#  <button type="submit">Предсказать категорию</button>#}
+{#</form>#}
+{##}
+{#{% if category %}#}
+{#  <h2>Результат предсказания:</h2>#}
+{#  <p>{{ category }}</p>#}
+{#{% endif %}#}
+{##}
+{#{% endblock %}#}
+
+{#{% extends 'web/base.html' %}#}
+{#{% load static %}#}
+{##}
+{#{% block content %}#}
+{##}
+{#  <div class="container">#}
+{#    <div class="row">#}
+{#      <div class="col-md-6 mx-auto">#}
+{#        <div class="card mt-5">#}
+{#          <div class="card-body">#}
+{#            <h2 class="card-title">Веб-сервис для выявления фейковых новостей</h2>#}
+{#            <form method="post" class="prediction-form">#}
+{#              {% csrf_token %}#}
+{#              {{ form.as_p }}#}
+{#              <button type="submit" class="btn btn-primary">Предсказать категорию</button>#}
+{#            </form>#}
+{#            {% if category %}#}
+{#              <div class="mt-3">#}
+{#                <h4 class="result-title">Результат предсказания:</h4>#}
+{#                <p class="category">{{ category }}</p>#}
+{#              </div>#}
+{#            {% endif %}#}
+{#          </div>#}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+{#  </div>#}
+{#{% endblock %}#}
+{#<style>#}
+{#  .container {#}
+{#    margin-top: 50px;#}
+{#  }#}
+{##}
+{#  .card {#}
+{#    background-color: #f8f9fa;#}
+{#    border: none;#}
+{#    border-radius: 10px;#}
+{#    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);#}
+{#  }#}
+{##}
+{#  .card-title {#}
+{#    font-size: 24px;#}
+{#    font-weight: bold;#}
+{#    color: #333;#}
+{#    text-align: center;#}
+{#    margin-bottom: 20px;#}
+{#  }#}
+{##}
+{#  .prediction-form {#}
+{#    text-align: center;#}
+{#  }#}
+{##}
+{#  .form-group {#}
+{#    margin-bottom: 20px;#}
+{#  }#}
+{##}
+{#  .form-control {#}
+{#    width: 100%;#}
+{#    padding: 10px;#}
+{#    font-size: 16px;#}
+{#    border-radius: 5px;#}
+{#    border: 1px solid #ccc;#}
+{#  }#}
+{##}
+{#  .btn-primary {#}
+{#    background-color: #dc3545;#}
+{#    color: #fff;#}
+{#    border: none;#}
+{#    border-radius: 5px;#}
+{#    font-size: 16px;#}
+{#    padding: 10px 20px;#}
+{#    cursor: pointer;#}
+{#  }#}
+{##}
+{#  .mt-3 {#}
+{#    margin-top: 20px;#}
+{#  }#}
+{##}
+{#  .result-title {#}
+{#    font-size: 18px;#}
+{#    font-weight: bold;#}
+{#    color: #333;#}
+{#    text-align: center;#}
+{#    margin-bottom: 10px;#}
+{#  }#}
+{##}
+{#  .category {#}
+{#    font-size: 20px;#}
+{#    font-weight: bold;#}
+{#    color: #dc3545;#}
+{#    text-align: center;#}
+{#  }#}
+{#</style>#}
+
 
 
 {% extends 'web/base.html' %}
+{% load static %}
 
 {% block content %}
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f7f7f7;
-        }
-
-        h1 {
-            color: #333;
-            font-size: 28px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        p {
-            color: #666;
-            font-size: 16px;
-            text-align: center;
-        }
-
-        form {
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        .form-group {
-            margin-bottom: 10px;
-        }
-
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        input[type="text"],
-        textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        button[type="submit"] {
-            background-color: #333;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        #result {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #f1f1f1;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            text-align: center;
-        }
-    </style>
-
-    <h1>Выявление фейковых новостей</h1>
-
-    <p>Введите заголовок и текст новости для проверки:</p>
-
-    <form id="news-form">
-        <div class="form-group">
-            <label for="news-title">Заголовок новости:</label>
-            <input type="text" id="news-title" name="news-title" required>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <div class="card mt-5">
+        <div class="card-body">
+          <h2 class="card-title">Веб-сервис для выявления фейковых новостей</h2>
+          <form method="post" class="prediction-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Предсказать достоверность</button>
+          </form>
+          {% if category %}
+          <div class="mt-3">
+            <h4 class="result-title">Результат предсказания:</h4>
+            <p class="category">{{ category }}</p>
+          </div>
+          {% endif %}
         </div>
-        <div class="form-group">
-            <label for="news-content">Текст новости:</label>
-            <textarea id="news-content" name="news-content" required></textarea>
-        </div>
-        <button type="submit">Проверить</button>
-    </form>
-
-    <div id="result"></div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
+
+<style>
+.container {
+  margin-top: 50px;
+}
+
+.card {
+  background-color: #f8f9fa;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.prediction-form {
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.btn-primary {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.mt-3 {
+  margin-top: 20px;
+}
+
+.result-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.category {
+  font-size: 20px;
+  font-weight: bold;
+  color: #dc3545;
+  text-align: center;
+}
+</style>
