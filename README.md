@@ -1,8 +1,4 @@
-# Course-KFU
-Final project on the course of Digital Departments
+# Установка необходимых файлов
 
-## Запуск проекта для разработки
-- `python3 -n venv venv` - создание виртуального окружения
-- `source venv/bin/activate` - войти в вирутальное окружение 
-- `pip install -r requirements.txt` - установка зависимостей
-- `python manage.py runserver` - запустить сервер
+Необходимо запустить файл `model.ipynb` - для установки необходимых файлов.
+Размер исходных файлов составляет более 500 Мб поэтому их невозможно залить в github(
